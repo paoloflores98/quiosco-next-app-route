@@ -1,5 +1,5 @@
-import { prisma } from "@/src/lib/prisma";
-import CategoryIcon from "../ui/CategoryIcon";
+import { prisma } from "@/src/lib/prisma"
+import CategoryIcon from "../ui/CategoryIcon"
 
 async function getCategories() {
   return await prisma.category.findMany() // Obtener las categorías
