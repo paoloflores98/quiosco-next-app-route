@@ -6,7 +6,7 @@ import { OrderIdSchema } from "@/src/schema"
 
 export async function completeOrder(formData: FormData) {
   const data = {
-    orderId: formData.get('order_id')
+    orderId: formData.get('order_id') // Obtener el ID de la orden
   }
 
   const result = OrderIdSchema.safeParse(data)
@@ -28,5 +28,4 @@ export async function completeOrder(formData: FormData) {
       console.log(error)
     }
   }
-  
 }
