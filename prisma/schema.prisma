@@ -30,7 +30,7 @@ model Order {
   total Float
   date DateTime @default(now())
   status Boolean @default(false)
-  orderReadyAt DateTime?
+  orderReadyAt DateTime? // Campo opcional
   orderProducts OrderProducts[]
 }
 

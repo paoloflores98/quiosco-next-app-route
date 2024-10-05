@@ -4,11 +4,11 @@ import { prisma } from "@/src/lib/prisma"
 import { OrderSchema } from "@/src/schema"
 
 export async function createOrder(data: unknown) {
-  const result = OrderSchema.safeParse(data)
+  const result = OrderSchema.safeParse(data) // Validar el esquema de Zod
 
   if(!result.success) {
     return {
-      errors: result.error.issues
+      errors: result.error.issues // Retornar todos los errores que muestra Zod
     }
   }
 

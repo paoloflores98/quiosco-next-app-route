@@ -13,24 +13,29 @@ export default function OrderSummary() {
 
   const total = useMemo(() => order.reduce((total, item) => total + (item.quantity * item.price), 0), [order])
 
-  const handleCreateOrder = async (formData: FormData) => { // FormData: Type de Next.js
+  // formaData: Se incluye auto. en los actions y su type FormData es propio de Next.js
+  const handleCreateOrder = async (formData: FormData) => {
+    toast.dismiss(); // Evitar múltiples mensajes
+
     const data = {
       name: formData.get('name'),
       total,
       order
     }
 
-    const result = OrderSchema.safeParse(data)
+    // Validar desde el cliente
+    const result = OrderSchema.safeParse(data) // Validar el esquema de Zod
     if(!result.success) {
-      result.error.issues.forEach((issue) => {
+      result.error.issues.forEach((issue) => { // Iterar todos los errores que muestra Zod
         toast.error(issue.message)
       })
       return
     }  
     
+    // Validar desde el servidor
     const response = await createOrder(data)
     if(response?.errors) {
-      response.errors.forEach((issue) => {
+      response.errors.forEach((issue) => { // Iterar todos los errores que muestra Zod
         toast.error(issue.message)
       })
     }
