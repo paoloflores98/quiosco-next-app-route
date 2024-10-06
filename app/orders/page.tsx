@@ -1,12 +1,12 @@
 "use client"
 
-import useSWR from "swr"
-import OrderCard from "@/components/order/OrderCard"
-import Heading from "@/components/ui/Heading"
-import { OrderWithProducts } from "@/src/types"
+import useSWR from "swr";
+import Logo from "@/components/ui/Logo";
+import { OrderWithProducts } from "@/src/types";
+import LatesOrderItem from "@/components/order/LatesOrderItem";
 
 export default function OrdersPage() {
-  const url = '/admin/orders/api'
+  const url = '/orders/api'
   const fetcher = () => fetch(url)
     .then(response => response.json())
     .then(data => data)
@@ -19,20 +19,21 @@ export default function OrdersPage() {
 
   if(data) return (
     <>
-      <Heading>Administrar órdenes</Heading>
+      <h1 className="text-center mt-20 text-6xl font-black">Órdenes listas</h1>
+      <Logo />
 
       {data.length
         ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 mt-5">
-            {data.map(order => (
-              <OrderCard // Renderiza el componente
+          <div className="grid grid-cols-2 gap-5 max-w-5xl mx-auto mt-10">
+            {data.map(order =>(
+              <LatesOrderItem
                 key={order.id}
                 order={order}
               />
             ))}
           </div>
         )
-        : <p className="text-center">No hay órdenes pendientes</p>
+        : <p className="text-center my-10">No hay órdenes listas </p>
       }
     </>
   )
