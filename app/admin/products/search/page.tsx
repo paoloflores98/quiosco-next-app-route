@@ -24,7 +24,7 @@ export default async function SearchPage({searchParams}: {searchParams: {search:
 
   return (
     <>
-      <Heading>Resultados de búsqueda: <span className="font-bold">"{searchParams.search}"</span></Heading>
+      <Heading>Resultados de búsqueda: <span className="font-bold">{searchParams.search}</span></Heading>
 
       <div className="flex flex-col lg:flex-row lg:justify-end gap-5">
         <ProductSearchForm /> {/* Renderiza el componente */}

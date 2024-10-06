@@ -14,7 +14,8 @@ interface Store {
 export const useStore = create<Store>((set, get) => ({
   order: [],
   addToOrder: (product) => {
-    const { categoryId, image, ...data } = product
+    // const { categoryId, image, ...data } = product
+    const { ...data } = product
     let order: OrderItem[] = []
 
     if(get().order.find(item => item.id === product.id)) {
