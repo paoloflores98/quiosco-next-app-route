@@ -2,8 +2,9 @@
 
 import { prisma } from "@/src/lib/prisma"
 import { ProductSchema } from "@/src/schema"
+import { revalidatePath } from "next/cache"
 
-export async function createProduct(data: unknown) {
+export async function updateProduct(data: unknown, id: number) {
   const result = ProductSchema.safeParse(data)
 
   if(!result.success) {
@@ -12,7 +13,12 @@ export async function createProduct(data: unknown) {
     }
   }
 
-  await prisma.product.create({
+  await prisma.product.update({
+    where: {
+      id
+    },
     data: result.data
   })
+
+  revalidatePath('/admin/products')
 }

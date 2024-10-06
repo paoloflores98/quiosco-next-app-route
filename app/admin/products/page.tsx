@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import ProductsPagination from "@/components/products/ProductsPagination"
-import ProductTable from "@/components/ProductTable"
+import ProductTable from "@/components/products/ProductTable"
 import Heading from "@/components/ui/Heading"
 import { prisma } from "@/src/lib/prisma"
 import Link from "next/link"
